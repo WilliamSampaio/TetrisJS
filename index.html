@@ -102,16 +102,10 @@
             }
         }
 
-        context.fillStyle = "#000";
-        context.beginPath();
-        context.moveTo(115,130);
-        context.lineTo(123, 130);
-        context.lineTo(123, 138);
-        context.lineTo(115, 138);
-        context.lineTo(115, 146);
-        context.lineTo(123, 146);
-        context.stroke();
+        const font = new Image();
+        font.src = "./led16.png";
 
+        context.drawImage(font, 115 + (font.width / 16) * 4, 60 + (font.height / 16) * 4);
         //const keyboardListener = createKeyboardListener(document)
 
         /*const BOARD_W = 10 * 10;
