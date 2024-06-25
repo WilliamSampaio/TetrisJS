@@ -105,7 +105,10 @@
         const font = new Image();
         font.src = "./led16.png";
 
-        context.drawImage(font, 115 + (font.width / 16) * 4, 60 + (font.height / 16) * 4);
+        let w = font.width / 16;
+        let h = font.height / 8;
+
+        context.drawImage(font, w * 4, h * 4, w, h, 0, 0, w, h);
         //const keyboardListener = createKeyboardListener(document)
 
         /*const BOARD_W = 10 * 10;
