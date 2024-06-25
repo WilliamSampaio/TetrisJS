@@ -7,14 +7,13 @@
     <title>TetrisJS</title>
     <style>
         #screen {
-            border: 1px solid #000;
+            /*border: 1px solid #000;*/
             background-color: #7e8f85;
             image-rendering: pixelated;
             image-rendering: crisp-edges;
             image-rendering: -moz-crisp-edges;
-            width: 380px;
-            height: 440px;
-            box-shadow: 1px;
+            width: 330px;
+            height: 410px;
         }
     </style>
 </head>
@@ -25,15 +24,56 @@
     <button id="btnPause">Pause</button>
     <br>
     <br>
-    <canvas id="screen" width="190" height="220"></canvas>
+    <canvas id="screen" width="165" height="205"></canvas>
 
     <script type="module">
 
         import createGame from './game.js'
-        import draw from './render.js'
+        // import draw from './render.js'
 
         const game = createGame()
-        const keyboardListener = createKeyboardListener(document)
+
+        const screen = document.getElementById('screen');
+        const context = screen.getContext('2d');
+
+        context.fillStyle = "#000";
+        context.fillRect(1, 1, 103, 203);
+        context.fillStyle = "#7e8f85";
+        context.clearRect(2, 2, 101, 201);
+
+        context.fillStyle = "#000";
+        context.fillRect(113, 1, 43, 43);
+        context.fillStyle = "#7e8f85";
+        context.clearRect(114, 2, 41, 41);
+
+
+        for (let y = 0; y < 20; y++) {
+            for (let x = 0; x < 10; x++) {
+                let xPos = (x * 10) + 2;
+                let yPos = (y * 10) + 2;
+                if (game.getBoard()[y][x] == 0) {
+                    context.fillStyle = "#7e8f85";
+                    context.fillRect(xPos, yPos, 10, 10);
+                    context.fillStyle = "#888";
+                    context.fillRect(xPos + 1, yPos + 1, 9, 9);
+                    context.fillStyle = "#7e8f85";
+                    context.fillRect(xPos + 2, yPos + 2, 7, 7);
+                    context.fillStyle = "#888";
+                    context.fillRect(xPos + 3, yPos + 3, 5, 5);
+                } else {
+                    context.fillStyle = "#7e8f85";
+                    context.fillRect(xPos, yPos, 10, 10);
+                    context.fillStyle = "#000";
+                    context.fillRect(xPos + 1, yPos + 1, 9, 9);
+                    context.fillStyle = "#7e8f85";
+                    context.fillRect(xPos + 2, yPos + 2, 7, 7);
+                    context.fillStyle = "#000";
+                    context.fillRect(xPos + 3, yPos + 3, 5, 5);
+                }
+            }
+        }
+
+        //const keyboardListener = createKeyboardListener(document)
 
         /*const BOARD_W = 10 * 10;
         const BOARD_H = 20 * 10;
@@ -47,23 +87,23 @@
         const c = document.getElementById("screen");
         const ctx = c.getContext("2d");
 
-        /*ctx.fillStyle = "#7e8f85";
-        ctx.fillRect(0,0,10,10);
-        ctx.fillStyle = "#000";
-        ctx.fillRect(1,1,9,9);
-        ctx.fillStyle = "#7e8f85";
-        ctx.fillRect(2,2,7,7);
-        ctx.fillStyle = "#000";
-        ctx.fillRect(3,3,5,5);*/
+        /*context.fillStyle = "#7e8f85";
+        context.fillRect(0,0,10,10);
+        context.fillStyle = "#000";
+        context.fillRect(1,1,9,9);
+        context.fillStyle = "#7e8f85";
+        context.fillRect(2,2,7,7);
+        context.fillStyle = "#000";
+        context.fillRect(3,3,5,5);*/
 
-        /*ctx.fillStyle = "#7e8f85";
-        ctx.fillRect(0, 0, 10, 10);
-        ctx.fillStyle = "#777";
-        ctx.fillRect(1, 1, 9, 9);
-        ctx.fillStyle = "#7e8f85";
-        ctx.fillRect(2, 2, 7, 7);
-        ctx.fillStyle = "#777";
-        ctx.fillRect(3, 3, 5, 5);
+        /*context.fillStyle = "#7e8f85";
+        context.fillRect(0, 0, 10, 10);
+        context.fillStyle = "#777";
+        context.fillRect(1, 1, 9, 9);
+        context.fillStyle = "#7e8f85";
+        context.fillRect(2, 2, 7, 7);
+        context.fillStyle = "#777";
+        context.fillRect(3, 3, 5, 5);
 
         document.getElementById('btnStart').addEventListener('click', function () {
             alert('Start!');

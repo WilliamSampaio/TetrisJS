@@ -1,11 +1,31 @@
-import getBoard from "./board.js"
 import getTetraminos from "./tetraminos.js"
 
 export default function createGame() {
     const state = {
         score: 0,
         speed: 700,
-        board: getBoard(),
+        board: [
+            [1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+            [0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+            [1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+        ],
         tetraminosFactory: getTetraminos()
     }
 
@@ -141,6 +161,10 @@ export default function createGame() {
         }
     }
 
+    function getBoard(){
+        return state.board;
+    }
+
     return {
         addPlayer,
         removePlayer,
@@ -150,6 +174,7 @@ export default function createGame() {
         state,
         setState,
         subscribe,
-        start
+        start,
+        getBoard
     }
 }
