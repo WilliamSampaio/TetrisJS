@@ -29,6 +29,7 @@
     <script type="module">
 
         import createGame from './game.js'
+        import getTetraminos from './tetraminos.js'
         // import draw from './render.js'
 
         const game = createGame()
@@ -72,6 +73,44 @@
                 }
             }
         }
+
+        let piece = getTetraminos().randomPiece();
+
+        for (let y = 0; y < 4; y++) {
+            for (let x = 0; x < 4; x++) {
+                let xPos = (x * 10) + 114;
+                let yPos = (y * 10) + 2;
+                if (piece[y][x] == 0) {
+                    context.fillStyle = "#7e8f85";
+                    context.fillRect(xPos, yPos, 10, 10);
+                    context.fillStyle = "#888";
+                    context.fillRect(xPos + 1, yPos + 1, 9, 9);
+                    context.fillStyle = "#7e8f85";
+                    context.fillRect(xPos + 2, yPos + 2, 7, 7);
+                    context.fillStyle = "#888";
+                    context.fillRect(xPos + 3, yPos + 3, 5, 5);
+                } else {
+                    context.fillStyle = "#7e8f85";
+                    context.fillRect(xPos, yPos, 10, 10);
+                    context.fillStyle = "#000";
+                    context.fillRect(xPos + 1, yPos + 1, 9, 9);
+                    context.fillStyle = "#7e8f85";
+                    context.fillRect(xPos + 2, yPos + 2, 7, 7);
+                    context.fillStyle = "#000";
+                    context.fillRect(xPos + 3, yPos + 3, 5, 5);
+                }
+            }
+        }
+
+        context.fillStyle = "#000";
+        context.beginPath();
+        context.moveTo(115,130);
+        context.lineTo(123, 130);
+        context.lineTo(123, 138);
+        context.lineTo(115, 138);
+        context.lineTo(115, 146);
+        context.lineTo(123, 146);
+        context.stroke();
 
         //const keyboardListener = createKeyboardListener(document)
 
