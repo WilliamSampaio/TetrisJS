@@ -24,8 +24,8 @@ export default function createAssets() {
         }
     }
 
-    function printNumbers(x, y, value, context) {
-        let numberStr = ('      ' + value).slice(-6);
+    function printNumbers(x, y, value, maxLen, context) {
+        let numberStr = (Array.from(Array(maxLen).fill(' ')).join('') + value).slice(-maxLen);
         let posX = x;
         for (let i = 0; i < numberStr.length; i++) {
             posX = x + (i * 9)
