@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TetrisJS</title>
     <style>
+        img {
+            display: none;
+        }
+
         #screen {
             /*border: 1px solid #000;*/
             background-color: #7e8f85;
@@ -19,6 +23,7 @@
 </head>
 
 <body>
+    <img src="tiles.png">
     <button id="btnStart">Start</button>
     <button id="btnReset">Reset</button>
     <button id="btnPause">Pause</button>
@@ -47,29 +52,17 @@
         context.fillStyle = "#7e8f85";
         context.clearRect(114, 2, 41, 41);
 
+        const tiles = new Image();
+        tiles.src = "tiles.png";
 
         for (let y = 0; y < 20; y++) {
             for (let x = 0; x < 10; x++) {
-                let xPos = (x * 10) + 2;
-                let yPos = (y * 10) + 2;
+                let xPos = (x * 10) + 3;
+                let yPos = (y * 10) + 3;
                 if (game.getBoard()[y][x] == 0) {
-                    context.fillStyle = "#7e8f85";
-                    context.fillRect(xPos, yPos, 10, 10);
-                    context.fillStyle = "#888";
-                    context.fillRect(xPos + 1, yPos + 1, 9, 9);
-                    context.fillStyle = "#7e8f85";
-                    context.fillRect(xPos + 2, yPos + 2, 7, 7);
-                    context.fillStyle = "#888";
-                    context.fillRect(xPos + 3, yPos + 3, 5, 5);
+                    context.drawImage(tiles, 0 * (tiles.width / 2), 0, tiles.width / 2, tiles.height, xPos, yPos, 9, 9);
                 } else {
-                    context.fillStyle = "#7e8f85";
-                    context.fillRect(xPos, yPos, 10, 10);
-                    context.fillStyle = "#000";
-                    context.fillRect(xPos + 1, yPos + 1, 9, 9);
-                    context.fillStyle = "#7e8f85";
-                    context.fillRect(xPos + 2, yPos + 2, 7, 7);
-                    context.fillStyle = "#000";
-                    context.fillRect(xPos + 3, yPos + 3, 5, 5);
+                    context.drawImage(tiles, 1 * (tiles.width / 2), 0, tiles.width / 2, tiles.height, xPos, yPos, 9, 9);
                 }
             }
         }
@@ -78,80 +71,15 @@
 
         for (let y = 0; y < 4; y++) {
             for (let x = 0; x < 4; x++) {
-                let xPos = (x * 10) + 114;
-                let yPos = (y * 10) + 2;
+                let xPos = (x * 10) + 115;
+                let yPos = (y * 10) + 3;
                 if (piece[y][x] == 0) {
-                    context.fillStyle = "#7e8f85";
-                    context.fillRect(xPos, yPos, 10, 10);
-                    context.fillStyle = "#888";
-                    context.fillRect(xPos + 1, yPos + 1, 9, 9);
-                    context.fillStyle = "#7e8f85";
-                    context.fillRect(xPos + 2, yPos + 2, 7, 7);
-                    context.fillStyle = "#888";
-                    context.fillRect(xPos + 3, yPos + 3, 5, 5);
+                    context.drawImage(tiles, 0 * (tiles.width / 2), 0, tiles.width / 2, tiles.height, xPos, yPos, 9, 9);
                 } else {
-                    context.fillStyle = "#7e8f85";
-                    context.fillRect(xPos, yPos, 10, 10);
-                    context.fillStyle = "#000";
-                    context.fillRect(xPos + 1, yPos + 1, 9, 9);
-                    context.fillStyle = "#7e8f85";
-                    context.fillRect(xPos + 2, yPos + 2, 7, 7);
-                    context.fillStyle = "#000";
-                    context.fillRect(xPos + 3, yPos + 3, 5, 5);
+                    context.drawImage(tiles, 1 * (tiles.width / 2), 0, tiles.width / 2, tiles.height, xPos, yPos, 9, 9);
                 }
             }
         }
-
-        const font = new Image();
-        font.src = "./led16.png";
-
-        let w = font.width / 16;
-        let h = font.height / 8;
-
-        context.drawImage(font, w * 4, h * 4, w, h, 0, 0, w, h);
-        //const keyboardListener = createKeyboardListener(document)
-
-        /*const BOARD_W = 10 * 10;
-        const BOARD_H = 20 * 10;
-
-        board = getBoard(BOARD_W, BOARD_H);*/
-
-        //t = getTetraminos();
-
-        /*piece = t.random();
-
-        const c = document.getElementById("screen");
-        const ctx = c.getContext("2d");
-
-        /*context.fillStyle = "#7e8f85";
-        context.fillRect(0,0,10,10);
-        context.fillStyle = "#000";
-        context.fillRect(1,1,9,9);
-        context.fillStyle = "#7e8f85";
-        context.fillRect(2,2,7,7);
-        context.fillStyle = "#000";
-        context.fillRect(3,3,5,5);*/
-
-        /*context.fillStyle = "#7e8f85";
-        context.fillRect(0, 0, 10, 10);
-        context.fillStyle = "#777";
-        context.fillRect(1, 1, 9, 9);
-        context.fillStyle = "#7e8f85";
-        context.fillRect(2, 2, 7, 7);
-        context.fillStyle = "#777";
-        context.fillRect(3, 3, 5, 5);
-
-        document.getElementById('btnStart').addEventListener('click', function () {
-            alert('Start!');
-        });
-
-        document.getElementById('btnReset').addEventListener('click', function () {
-            alert('Reset!');
-        });
-
-        document.getElementById('btnPause').addEventListener('click', function () {
-            alert('Pause!');
-        });*/
     </script>
 </body>
 
