@@ -161,7 +161,7 @@ export default function createGame() {
         }
     }
 
-    function getBoard(){
+    function getBoard() {
         return state.board;
     }
 

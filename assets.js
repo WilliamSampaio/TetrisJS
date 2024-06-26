@@ -79,7 +79,12 @@ export default function createAssets() {
     function printString(x, y, string, on = true, context) {
         let posX = x;
         for (let i = 0; i < string.length; i++) {
-            posX = x + (i * (c._LETTETS7X10[0][0].length + 1));
+            if (string[i] == ' ') {
+                posX += 1;
+                continue;
+            } else {
+                posX = posX + (c._LETTETS7X10[0][0].length + 1);
+            }
             switch (String(string[i]).toUpperCase()) {
                 case 'A':
                     printChar(posX, y, 0, on, context);
