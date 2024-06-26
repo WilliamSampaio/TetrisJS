@@ -67,9 +67,9 @@ export default function createAssets() {
 
     function printChar(x, y, num, on = true, context) {
         on ? context.fillStyle = c.COLOR_ON : context.fillStyle = c.COLOR_OFF;
-        for (let _y = 0; _y < c._LETTETS8X10[num].length; _y++) {
-            for (let _x = 0; _x < c._LETTETS8X10[num][_y].length; _x++) {
-                if (c._LETTETS8X10[num][_y][_x] == 1) {
+        for (let _y = 0; _y < c._LETTETS7X10[num].length; _y++) {
+            for (let _x = 0; _x < c._LETTETS7X10[num][_y].length; _x++) {
+                if (c._LETTETS7X10[num][_y][_x] == 1) {
                     context.fillRect(x + _x, y + _y, 1, 1);
                 }
             }
@@ -79,7 +79,7 @@ export default function createAssets() {
     function printString(x, y, string, on = true, context) {
         let posX = x;
         for (let i = 0; i < string.length; i++) {
-            posX = x + (i * 9)
+            posX = x + (i * (c._LETTETS7X10[0][0].length + 1));
             switch (String(string[i]).toUpperCase()) {
                 case 'A':
                     printChar(posX, y, 0, on, context);
