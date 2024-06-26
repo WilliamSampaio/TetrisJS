@@ -1,3 +1,5 @@
+import * as c from "./constants.js"
+
 export default function createAssets() {
     const _block = [
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -448,7 +450,7 @@ export default function createAssets() {
         ],
     ];
 
-    function drawBlock(x, y, on = true, context) {
+    function printBlock(x, y, on = true, context) {
         on ? context.fillStyle = "#000000" : context.fillStyle = "#777777";
         for (let _y = 0; _y < _block.length; _y++) {
             for (let _x = 0; _x < _block[_y].length; _x++) {
@@ -459,8 +461,8 @@ export default function createAssets() {
         }
     }
 
-    function drawOneNumber(x, y, num, on = true, context) {
-        on ? context.fillStyle = "#000000" : context.fillStyle = "#777777";
+    function printNumber(x, y, num, on = true, context) {
+        on ? context.fillStyle = c.COLOR_ON : context.fillStyle = c.COLOR_OFF;
         for (let _y = 0; _y < 13; _y++) {
             for (let _x = 0; _x < 8; _x++) {
                 if (_numbers[num][_y][_x] == 1) {
@@ -470,49 +472,49 @@ export default function createAssets() {
         }
     }
 
-    function drawNumbers(x, y, value, context) {
+    function printNumbers(x, y, value, context) {
         let numberStr = ('      ' + value).slice(-6);
         let posX = x;
         for (let i = 0; i < numberStr.length; i++) {
             posX = x + (i * 9)
-            drawOneNumber(posX, y, 8, false, context);
+            printNumber(posX, y, 8, false, context);
             switch (numberStr[i]) {
                 case '0':
-                    drawOneNumber(posX, y, 0, true, context);
+                    printNumber(posX, y, 0, true, context);
                     break;
                 case '1':
-                    drawOneNumber(posX, y, 1, true, context);
+                    printNumber(posX, y, 1, true, context);
                     break;
                 case '2':
-                    drawOneNumber(posX, y, 2, true, context);
+                    printNumber(posX, y, 2, true, context);
                     break;
                 case '3':
-                    drawOneNumber(posX, y, 3, true, context);
+                    printNumber(posX, y, 3, true, context);
                     break;
                 case '4':
-                    drawOneNumber(posX, y, 4, true, context);
+                    printNumber(posX, y, 4, true, context);
                     break;
                 case '5':
-                    drawOneNumber(posX, y, 5, true, context);
+                    printNumber(posX, y, 5, true, context);
                     break;
                 case '6':
-                    drawOneNumber(posX, y, 6, true, context);
+                    printNumber(posX, y, 6, true, context);
                     break;
                 case '7':
-                    drawOneNumber(posX, y, 7, true, context);
+                    printNumber(posX, y, 7, true, context);
                     break;
                 case '8':
-                    drawOneNumber(posX, y, 8, true, context);
+                    printNumber(posX, y, 8, true, context);
                     break;
                 case '9':
-                    drawOneNumber(posX, y, 9, true, context);
+                    printNumber(posX, y, 9, true, context);
                     break;
             }
         }
     }
 
     function printChar(x, y, num, on = true, context) {
-        on ? context.fillStyle = "#000000" : context.fillStyle = "#777777";
+        on ? context.fillStyle = c.COLOR_ON : context.fillStyle = c.COLOR_OFF;
         for (let _y = 0; _y < _letters[num].length; _y++) {
             for (let _x = 0; _x < _letters[num][_y].length; _x++) {
                 if (_letters[num][_y][_x] == 1) {
@@ -586,15 +588,8 @@ export default function createAssets() {
     }
 
     return {
-        drawBlock,
-        drawNumbers,
+        printBlock,
+        printNumbers,
         printString
     }
 }
-
-/*
-
-ACDEGHILMNOPRSTUVX
-
-
-*/

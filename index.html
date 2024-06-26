@@ -23,12 +23,11 @@
 </head>
 
 <body>
-    <img src="board.png">
-    <button id="btnStart">Start</button>
+    <!-- <button id="btnStart">Start</button>
     <button id="btnReset">Reset</button>
     <button id="btnPause">Pause</button>
     <br>
-    <br>
+    <br> -->
     <canvas id="screen" width="181" height="229"></canvas>
 
     <script type="module">
@@ -59,9 +58,9 @@
                 let xPos = (x * 11) + 5;
                 let yPos = (y * 11) + 5;
                 if (game.getBoard()[y][x] == 0) {
-                    assets.drawBlock(xPos, yPos, false, context);
+                    assets.printBlock(xPos, yPos, false, context);
                 } else {
-                    assets.drawBlock(xPos, yPos, true, context);
+                    assets.printBlock(xPos, yPos, true, context);
                 }
             }
         }
@@ -79,14 +78,14 @@
                 let xPos = (x * 11) + 127;
                 let yPos = (y * 11) + 60;
                 if (piece[y][x] == 0) {
-                    assets.drawBlock(xPos, yPos, false, context);
+                    assets.printBlock(xPos, yPos, false, context);
                 } else {
-                    assets.drawBlock(xPos, yPos, true, context);
+                    assets.printBlock(xPos, yPos, true, context);
                 }
             }
         }
 
-        assets.drawNumbers(122, 4, 789000, context);
+        assets.printNumbers(122, 4, 789000, context);
     </script>
 </body>
 
