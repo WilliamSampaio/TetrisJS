@@ -15,7 +15,7 @@ export default function createAssets() {
 
     function printNumber(x, y, num, on = true, context) {
         on ? context.fillStyle = c.COLOR_ON : context.fillStyle = c.COLOR_OFF;
-        for (let _y = 0; _y < 13; _y++) {
+        for (let _y = 0; _y < 15; _y++) {
             for (let _x = 0; _x < 8; _x++) {
                 if (c._NUMBERS[num][_y][_x] == 1) {
                     context.fillRect(x + _x, y + _y, 1, 1);
@@ -144,9 +144,33 @@ export default function createAssets() {
         }
     }
 
+    function printSpeedLevel(x, y, on = true, context) {
+        on ? context.fillStyle = c.COLOR_ON : context.fillStyle = c.COLOR_OFF;
+        for (let _y = 0; _y < c.LABEL_SPEEDLEVEL.length; _y++) {
+            for (let _x = 0; _x < c.LABEL_SPEEDLEVEL[_y].length; _x++) {
+                if (c.LABEL_SPEEDLEVEL[_y][_x] == 1) {
+                    context.fillRect(x + _x, y + _y, 1, 1);
+                }
+            }
+        }
+    }
+
+    function printIconMusic(x, y, on = true, context) {
+        on ? context.fillStyle = c.COLOR_ON : context.fillStyle = c.COLOR_OFF;
+        for (let _y = 0; _y < c.ICON_MUSIC.length; _y++) {
+            for (let _x = 0; _x < c.ICON_MUSIC[_y].length; _x++) {
+                if (c.ICON_MUSIC[_y][_x] == 1) {
+                    context.fillRect(x + _x, y + _y, 1, 1);
+                }
+            }
+        }
+    }
+
     return {
         printBlock,
         printNumbers,
-        printString
+        printString,
+        printSpeedLevel,
+        printIconMusic
     }
 }
