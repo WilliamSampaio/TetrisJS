@@ -10,7 +10,7 @@ img {
     display: none;
 }
 
-#screen {
+#game {
     background-color: #7e8f85;
     image-rendering: pixelated;
     image-rendering: crisp-edges;
