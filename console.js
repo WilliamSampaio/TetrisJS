@@ -82,6 +82,9 @@ export default class Console {
         this.start = () => {
             this.on = !this.on;
             if (this.on) {
+                let themeSound = new Audio("assets/sound/theme.wav");
+                // themeSound.loop = true;
+                themeSound.play();
                 this.init();
                 this.loop();
             } else {
