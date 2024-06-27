@@ -1,14 +1,8 @@
 import Printer from './printer.js'
+import Snake from './games/Snake.js';
 
 function getGames() {
-    return [
-        { name: 'Snake' },
-        { name: 'Tetris' },
-        { name: 'Tanks' },
-        { name: 'Racer' },
-        { name: 'Breakout' },
-        { name: 'Pong' },
-    ]
+    return [(new Snake())]
 }
 
 export default class Console {
@@ -22,10 +16,12 @@ export default class Console {
         this.gameOver = false;
         this.canvas = null;
         this.games = getGames();
+        this.currentGame = null;
 
         this.init = () => {
             this.canvas = document.getElementById('game');
             this.printer = new Printer();
+            this.currentGame = this.games[0];
         };
 
         this.draw = () => {
@@ -47,32 +43,31 @@ export default class Console {
             this.printer.printNumbers(126, 115, this.speed, 2, context);
             this.printer.printNumbers(154, 115, this.speed, 2, context);
 
-            // for (let y = 0; y < 20; y++) {
-            //     for (let x = 0; x < 10; x++) {
-            //         let xPos = (x * 11) + 5;
-            //         let yPos = (y * 11) + 5;
-            //         if (game.getBoard()[y][x] == 0) {
-            //             this.printer.printBlock(xPos, yPos, false, context);
-            //         } else {
-            //             this.printer.printBlock(xPos, yPos, true, context);
-            //         }
-            //     }
-            // }
+            for (let y = 0; y < 20; y++) {
+                for (let x = 0; x < 10; x++) {
+                    let xPos = (x * 11) + 5;
+                    let yPos = (y * 11) + 5;
+                    if (this.currentGame.getUpdatedBoard()[y][x] == 0) {
+                        this.printer.printBlock(xPos, yPos, false, context);
+                    } else {
+                        this.printer.printBlock(xPos, yPos, true, context);
+                    }
+                }
+            }
 
             // let piece = getTetraminos().randomPiece();
 
-            // for (let y = 0; y < 4; y++) {
-            //     for (let x = 0; x < 4; x++) {
-            //         let xPos = (x * 11) + 127;
-            //         let yPos = (y * 11) + 60;
-            //         if (piece[y][x] == 0) {
-            //             this.printer.printBlock(xPos, yPos, false, context);
-            //         } else {
-            //             this.printer.printBlock(xPos, yPos, true, context);
-            //         }
-            //     }
-            // }
-
+            for (let y = 0; y < 4; y++) {
+                for (let x = 0; x < 4; x++) {
+                    let xPos = (x * 11) + 127;
+                    let yPos = (y * 11) + 60;
+                    if (this.currentGame.getUpdatedSideBoard()[y][x] == 0) {
+                        this.printer.printBlock(xPos, yPos, false, context);
+                    } else {
+                        this.printer.printBlock(xPos, yPos, true, context);
+                    }
+                }
+            }
         };
 
         this.loop = () => {
