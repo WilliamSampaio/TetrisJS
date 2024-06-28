@@ -2,8 +2,12 @@ import Console from './console.js'
 import getTetraminos from './tetraminos.js'
 // import createAssets from './assets.js'
 // import draw from './render.js'
+import createKeyboardListener from './keyboardListener.js';
 
 const gameConsole = new Console();
+
+const keyboardListener = createKeyboardListener();
+keyboardListener.subscribe(gameConsole.keyPress);
 
 // document.getElementById('btnStartPause').addEventListener('click', () => {
 //     gameConsole.pause = !gameConsole.pause;

@@ -24,6 +24,10 @@ export default class Console {
         this.height = 499;
         this.bodyColor = c.BODY_COLORS[0];
 
+        this.keyPress = (command) => {
+            console.log(command)
+        }
+
         this.resize = () => {
             this.canvas.width = this.width;
             this.canvas.height = this.height;
@@ -32,6 +36,10 @@ export default class Console {
             // this.canvas.height = innerHeight * 0.9;
             // this.canvas.width = ((innerHeight * 0.9) * this.width) / this.height;
         };
+
+        // this.handleKeydown = (e) => {
+        //     alert(e.code);
+        // }
 
         this.init = () => {
             this.canvas = document.getElementById('game');
@@ -42,6 +50,7 @@ export default class Console {
             this.currentGame = this.games[0];
 
             // document.addEventListener('resize', this.resize);
+            // document.addEventListener('keydown', this.handleKeydown)
         };
 
         this.update = () => {
