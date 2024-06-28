@@ -33,7 +33,7 @@ export default class StartScreen extends GameBase {
             this.loop = 1;
         }
         this.init();
-        this.theme.play();
+        // this.theme.play();
     }
 
     move() {
