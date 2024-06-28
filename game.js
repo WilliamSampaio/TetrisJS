@@ -5,22 +5,23 @@ import getTetraminos from './tetraminos.js'
 
 const gameConsole = new Console();
 
-document.getElementById('btnSelectPause').addEventListener('click', () => {
-    gameConsole.pause = !gameConsole.pause;
-});
+// document.getElementById('btnStartPause').addEventListener('click', () => {
+//     gameConsole.pause = !gameConsole.pause;
+// });
 
-document.getElementById('btnSound').addEventListener('click', () => {
-    gameConsole.sound = !gameConsole.sound;
-});
+// document.getElementById('btnSound').addEventListener('click', () => {
+//     gameConsole.sound = !gameConsole.sound;
+// });
 
 document.getElementById('btnOn').addEventListener('click', () => {
-    gameConsole.start();
+    gameConsole.power();
 });
 
-document.getElementById('btnReset').addEventListener('click', () => {
-    gameConsole.init();
-});
+// document.getElementById('btnReset').addEventListener('click', () => {
+//     gameConsole.init();
+// });
 
-
+gameConsole.start();
+// gameConsole.power();
 
 

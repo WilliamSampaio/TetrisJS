@@ -1,6 +1,22 @@
+export const LEFT = 0;
+export const UP = 1;
+export const RIGHT = 2;
+export const DOWN = 3;
+
 export const COLOR_SCREEN = "#7e8f85";
-export const COLOR_ON = "#000000";
-export const COLOR_OFF = "#777777";
+export const COLOR_ON = '#000000';
+export const COLOR_OFF = 'rgba(0,0,0,0.1)';
+
+export const SHADOW_DARK = 'rgba(0,0,0,0.7)';
+export const SHADOW_LIGHT = 'rgba(255,255,255,0.7)';
+
+export const BODY_COLORS = [
+    '#0747ad',
+    '#d1d1d1',
+    '#dbbd14',
+    '#1c1c1c',
+    '#0f9952'
+]
 
 export const _BLOCK = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],

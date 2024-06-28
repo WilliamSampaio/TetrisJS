@@ -29,6 +29,7 @@ export default class GameBase {
             [0, 0, 0, 0],
             [0, 0, 0, 0]
         ];
+        this.delay = 1000;
     };
 
     update() { };
