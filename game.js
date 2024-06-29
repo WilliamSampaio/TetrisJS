@@ -1,13 +1,17 @@
-import Console from './console.js'
+import createConsole from './console.js'
 import getTetraminos from './tetraminos.js'
 // import createAssets from './assets.js'
 // import draw from './render.js'
-import createKeyboardListener from './keyboardListener.js';
+import createKeyboardListener from './keyboardListener.js'
+import renderScreen from './screen.js'
 
-const gameConsole = new Console();
+const console = createConsole()
 
-const keyboardListener = createKeyboardListener();
-keyboardListener.subscribe(gameConsole.keyPress);
+const keyboardListener = createKeyboardListener()
+// keyboardListener.subscribe(gameConsole.keyPress)
+
+const canvas = document.getElementById('screen')
+renderScreen(canvas, console)
 
 // document.getElementById('btnStartPause').addEventListener('click', () => {
 //     gameConsole.pause = !gameConsole.pause;

@@ -1,8 +1,15 @@
-import Printer from './printer.js'
 import Snake from './games/Snake.js';
 import StartScreen from './games/StartScreen.js';
 import * as c from './constants.js'
 
+export default function createConsole() {
+    const state = {
+        power: false,
+        sound: true,
+        pause: false
+    }
+}
+/*
 function getGames() {
     return [(new StartScreen())]
     return [(new Snake())]
@@ -168,3 +175,4 @@ export default class Console {
         this.init();
     };
 }
+*/
