@@ -1,17 +1,50 @@
 import Snake from './games/Snake.js';
-import StartScreen from './games/StartScreen.js';
+import Menu from './games/Menu.js';
 import * as c from './constants.js'
+import renderScreen from './screen.js'
 
-export default function createConsole() {
+export default function createConsole(canvasId) {
+    const canvas = document.getElementById(canvasId)
+    canvas.width = c.SCREEN_WIDTH
+    canvas.height = c.SCREEN_HEIGHT
+
     const state = {
         power: false,
         sound: true,
-        pause: false
+        pause: false,
+        currentGame: null,
+        lastUpdate: Date.now()
+    }
+
+    function power() {
+        if (!state.power) {
+            state.power = true
+            state.currentGame = new Menu()
+        } else {
+            state.power = false
+            state.currentGame = null
+        }
+    }
+
+    function run() {
+        if (state.currentGame !== null) {
+            if (state.currentGame.update()) {
+                renderScreen(canvas, state.currentGame.getCommand())
+            }
+        } else {
+            renderScreen(canvas, null)
+        }
+        requestAnimationFrame(run);
+    };
+
+    return {
+        power,
+        run
     }
 }
 /*
 function getGames() {
-    return [(new StartScreen())]
+    return [(new Menu())]
     return [(new Snake())]
 }
 
