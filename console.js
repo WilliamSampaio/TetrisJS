@@ -3,8 +3,11 @@ import Snake from './games/Snake.js';
 import * as c from './constants.js'
 import renderScreen from './screen.js'
 import createKeyboardListener from './keyboardListener.js'
-import preview from './games/0.js'
-import preview1 from './games/1.js'
+// import preview from './games/0.js'
+// import preview1 from './games/1.js'
+import previews from './games/index.js';
+
+const _previews = previews()
 
 export default function createConsole(canvasId) {
     const canvas = document.getElementById(canvasId)
@@ -35,7 +38,7 @@ export default function createConsole(canvasId) {
 
             if (keyPressed == 'ArrowRight') {
 
-                state.preview = preview1()
+                state.preview = _previews[1]
             }
         }
         // setLastkeyPressed(keyPressed)
@@ -54,7 +57,7 @@ export default function createConsole(canvasId) {
     function power() {
         if (!state.power) {
             state.power = true
-            state.preview = preview()
+            state.preview = _previews[0]
             // state.keyboardListener.subscribe(state.currentGame.handleKeyPressed)
         } else {
             state.power = false
