@@ -15,24 +15,34 @@ export default function renderScreen(canvas, command) {
     drawSoundIcon(132, 150, true, context)
 
     drawString(121, 188, "pause", false, context)
-    drawString(125, 201, "game", true, context)
-    drawString(125, 212, "over", true, context)
+    drawString(128, 201, "game", command.gameOver, context)
+    drawString(128, 212, "over", command.gameOver, context)
 
-    drawNumbers(122, 4, '', 6, context)
+    drawNumbers(125, 4, '', 6, context)
     drawNumbers(126, 115, '', 2, context)
     drawNumbers(154, 115, '', 2, context)
 
     if (command === null) return
 
-    drawNumbers(122, 4, command.score, 6, context)
+    drawNumbers(123, 4, command.score, 6, context)
     drawNumbers(126, 115, command.speed, 2, context)
     drawNumbers(154, 115, command.level, 2, context)
 
-    drawBoard(command.board, context)
+    for (let y = 0; y < 20; y++) {
+        for (let x = 0; x < 10; x++) {
+            let xPos = (x * 11) + 5
+            let yPos = (y * 11) + 5
+            if (command.board[y][x] == 1) {
+                drawBlock(xPos, yPos, true, context)
+            } else {
+                drawBlock(xPos, yPos, false, context)
+            }
+        }
+    }
 
     for (let y = 0; y < 4; y++) {
         for (let x = 0; x < 4; x++) {
-            let xPos = (x * 11) + 127
+            let xPos = (x * 11) + 129
             let yPos = (y * 11) + 60
             if (command.sideBoard[y][x] == 0) {
                 drawBlock(xPos, yPos, false, context)
@@ -207,20 +217,6 @@ function drawSoundIcon(x, y, on = true, context) {
     }
 }
 
-function drawBoard(board, context) {
-    for (let y = 0; y < board; y++) {
-        for (let x = 0; x < 10; x++) {
-            let xPos = (x * 11) + 5
-            let yPos = (y * 11) + 5
-            if (board && board[y][x] == 1) {
-                drawBlock(xPos, yPos, true, context)
-            } else {
-                drawBlock(xPos, yPos, false, context)
-            }
-        }
-    }
-}
-
 function screenOff(context) {
     context.fillStyle = c.COLOR_SCREEN
     context.fillRect(0, 0, c.SCREEN_WIDTH, c.SCREEN_HEIGHT)
@@ -238,5 +234,19 @@ function screenOff(context) {
     drawString(125, 201, "game", false, context)
     drawString(125, 212, "over", false, context)
 
-    drawBoard(null, context)
+    for (let y = 0; y < 20; y++) {
+        for (let x = 0; x < 10; x++) {
+            let xPos = (x * 11) + 5
+            let yPos = (y * 11) + 5
+            drawBlock(xPos, yPos, false, context)
+        }
+    }
+
+    for (let y = 0; y < 4; y++) {
+        for (let x = 0; x < 4; x++) {
+            let xPos = (x * 11) + 129
+            let yPos = (y * 11) + 60
+            drawBlock(xPos, yPos, false, context)
+        }
+    }
 }

@@ -4,7 +4,7 @@ export default class GameBase {
         this.speed = speed
         this.level = level
         this.score = 0
-        this.gameOver = false,
+        this.gameOver = false
         this.board = [
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -35,14 +35,22 @@ export default class GameBase {
         ]
         this.delay = 1000
         this.lastUpdate = Date.now()
+        this.lastkeyPressed = null
     }
 
-    update() {
+    update(keyPressed = null) {
+        if (!this.next()) {
+            return false
+        }
+        return true
+    }
+
+    next() {
+        if (Date.now() >= this.lastUpdate + this.delay) {
+            this.lastUpdate = Date.now()
+            return true
+        }
         return false
-    }
-
-    updateEnable() {
-        return (Date.now() >= this.lastUpdate + this.delay) ? true : false
     }
 
     getCommand() {

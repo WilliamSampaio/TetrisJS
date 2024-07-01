@@ -6,6 +6,7 @@ export default class Menu extends GameBase {
         super("Start Screen", 0, 0)
         this.direction = c.RIGHT
         // this.theme = new Audio("assets/sound/theme.wav")
+        this.delay = 10
         this.init = function () {
             this.board = [
                 [1, 1, 1, 0, 1, 1, 1, 0, 0, 0],
@@ -37,7 +38,7 @@ export default class Menu extends GameBase {
     }
 
     update() {
-        if (!this.updateEnable()) {
+        if (!this.next()) {
             return false
         }
 

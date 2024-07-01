@@ -8,6 +8,10 @@ export default function createKeyboardListener() {
     function subscribe(observerFunc) {
         state.observers.push(observerFunc)
     }
+    
+    // function unsubscribe(observerFunc) {
+    //     state.observers.splice(state.observers.indexOf(observerFunc), 1)
+    // }
 
     // funcao que notifica todos os observers
     function notifyAll(command) {
@@ -21,13 +25,12 @@ export default function createKeyboardListener() {
 
     // funcao que captura o input e notifica todos
     function handleKeydown(e) {
-        const keyPressed = e.code
+        // const keyPressed = e.code
 
-        const command = {
-            keyPressed
-        }
-
-        notifyAll(command)
+        // const command = {
+        //     keyPressed
+        // }
+        notifyAll(e.code)
     }
 
     return {

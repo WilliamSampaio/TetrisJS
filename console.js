@@ -2,24 +2,48 @@ import Snake from './games/Snake.js';
 import Menu from './games/Menu.js';
 import * as c from './constants.js'
 import renderScreen from './screen.js'
+import createKeyboardListener from './keyboardListener.js'
 
 export default function createConsole(canvasId) {
     const canvas = document.getElementById(canvasId)
     canvas.width = c.SCREEN_WIDTH
     canvas.height = c.SCREEN_HEIGHT
 
+    canvas.style.height = innerHeight
+
+
     const state = {
         power: false,
         sound: true,
         pause: false,
         currentGame: null,
-        lastUpdate: Date.now()
+        lastUpdate: Date.now(),
+        keyboardListener: createKeyboardListener(),
+        lastkeyPressed: null
+    }
+
+    state.keyboardListener.subscribe(processKey)
+
+    function processKey(keyPressed) {
+        // console.log(keyPressed)
+        if (keyPressed == 'Enter') return power()
+        setLastkeyPressed(keyPressed)
+    }
+
+    function setLastkeyPressed(keyPressed) {
+        state.lastkeyPressed = keyPressed
+    }
+
+    function getLastkeyPressed() {
+        let keyPressed = state.lastkeyPressed
+        state.lastkeyPressed = null
+        return keyPressed
     }
 
     function power() {
         if (!state.power) {
             state.power = true
-            state.currentGame = new Menu()
+            state.currentGame = new Snake()
         } else {
             state.power = false
             state.currentGame = null
@@ -28,13 +52,13 @@ export default function createConsole(canvasId) {
 
     function run() {
         if (state.currentGame !== null) {
-            if (state.currentGame.update()) {
+            if (state.currentGame.update(getLastkeyPressed())) {
                 renderScreen(canvas, state.currentGame.getCommand())
             }
         } else {
             renderScreen(canvas, null)
         }
-        requestAnimationFrame(run);
+        window.requestAnimationFrame(run);
     };
 
     return {
