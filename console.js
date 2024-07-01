@@ -1,8 +1,10 @@
 import Snake from './games/Snake.js';
-import Menu from './games/Menu.js';
+// import Menu from './games/Menu.js';
 import * as c from './constants.js'
 import renderScreen from './screen.js'
 import createKeyboardListener from './keyboardListener.js'
+import preview from './games/0.js'
+import preview1 from './games/1.js'
 
 export default function createConsole(canvasId) {
     const canvas = document.getElementById(canvasId)
@@ -16,6 +18,7 @@ export default function createConsole(canvasId) {
         power: false,
         sound: true,
         pause: false,
+        preview: null,
         currentGame: null,
         lastUpdate: Date.now(),
         keyboardListener: createKeyboardListener(),
@@ -27,33 +30,43 @@ export default function createConsole(canvasId) {
     function processKey(keyPressed) {
         // console.log(keyPressed)
         if (keyPressed == 'Enter') return power()
-        setLastkeyPressed(keyPressed)
+
+        if (state.power) {
+
+            if (keyPressed == 'ArrowRight') {
+
+                state.preview = preview1()
+            }
+        }
+        // setLastkeyPressed(keyPressed)
     }
 
-    function setLastkeyPressed(keyPressed) {
-        state.lastkeyPressed = keyPressed
-    }
+    // function setLastkeyPressed(keyPressed) {
+    //     state.lastkeyPressed = keyPressed
+    // }
 
-    function getLastkeyPressed() {
-        let keyPressed = state.lastkeyPressed
-        state.lastkeyPressed = null
-        return keyPressed
-    }
+    // function getLastkeyPressed() {
+    //     let keyPressed = state.lastkeyPressed
+    //     state.lastkeyPressed = null
+    //     return keyPressed
+    // }
 
     function power() {
         if (!state.power) {
             state.power = true
-            state.currentGame = new Snake()
+            state.preview = preview()
+            // state.keyboardListener.subscribe(state.currentGame.handleKeyPressed)
         } else {
             state.power = false
+            state.preview = null
             state.currentGame = null
         }
     }
 
     function run() {
-        if (state.currentGame !== null) {
-            if (state.currentGame.update(getLastkeyPressed())) {
-                renderScreen(canvas, state.currentGame.getCommand())
+        if (state.preview !== null) {
+            if (state.preview.update()) {
+                renderScreen(canvas, state.preview.getGameState())
             }
         } else {
             renderScreen(canvas, null)

@@ -8,7 +8,7 @@ export default function createKeyboardListener() {
     function subscribe(observerFunc) {
         state.observers.push(observerFunc)
     }
-    
+
     // function unsubscribe(observerFunc) {
     //     state.observers.splice(state.observers.indexOf(observerFunc), 1)
     // }

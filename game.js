@@ -27,9 +27,9 @@ console.run()
 //     gameConsole.sound = !gameConsole.sound;
 // });
 
-document.getElementById('btnOn').addEventListener('click', () => {
-    console.power();
-});
+// document.getElementById('btnOn').addEventListener('click', () => {
+//     console.power();
+// });
 
 // document.getElementById('btnReset').addEventListener('click', () => {
 //     gameConsole.init();
